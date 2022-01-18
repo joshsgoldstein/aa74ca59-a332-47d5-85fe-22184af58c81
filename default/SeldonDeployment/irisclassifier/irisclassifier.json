@@ -16,47 +16,6 @@
                 "name": "default",
                 "graph": {
                     "name": "irisclassifier-container",
-                    "implementation": "XGBOOST_SERVER",
-                    "modelUri": "gs://seldon-models/xgboost/iris",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2022-01-13T22:57:45Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "irisclassifier-container",
-                                    "resources": {}
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/irisclassifier-container": "default"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 90,
-                "explainer": {
-                    "type": "AnchorTabular",
-                    "modelUri": "gs://seldon-models/alibi/iris_anchor_tabular_explainer_v2",
-                    "containerSpec": {
-                        "name": "",
-                        "resources": {}
-                    }
-                }
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "irisclassifier-container",
                     "implementation": "SKLEARN_SERVER",
                     "modelUri": "gs://seldon-models/v1.11.2/sklearn/iris",
                     "logger": {
@@ -80,12 +39,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/irisclassifier-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/irisclassifier-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
