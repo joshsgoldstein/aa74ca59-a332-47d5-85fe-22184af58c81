@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "aa74ca59-a332-47d5-85fe-22184af58c81-default",
             "fluentd": "true"
         }
     },
@@ -53,51 +54,6 @@
                 "engineResources": {},
                 "svcOrchSpec": {},
                 "traffic": 100
-            },
-            {
-                "name": "shadow",
-                "graph": {
-                    "name": "santhosh-raju-lr-container",
-                    "implementation": "XGBOOST_SERVER",
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/santhosh-raju/gb",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2022-01-21T09:46:54Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "santhosh-raju-lr-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/santhosh-raju-lr-container": "default",
-                    "seldon.io/canary": "false"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "shadow": true
             }
         ],
         "annotations": {
