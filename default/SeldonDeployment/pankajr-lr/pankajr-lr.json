@@ -1,6 +1,6 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "apiVersion": "machinelearning.seldon.io/v1",
     "metadata": {
         "name": "pankajr-lr",
         "namespace": "default",
@@ -53,6 +53,51 @@
                 "engineResources": {},
                 "svcOrchSpec": {},
                 "traffic": 100
+            },
+            {
+                "name": "shadow",
+                "graph": {
+                    "name": "pankajr-lr-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/pankajr/gb",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-01-21T09:42:05Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "pankajr-lr-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/pankajr-lr-container": "default",
+                    "seldon.io/canary": "false"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "shadow": true
             }
         ],
         "annotations": {
