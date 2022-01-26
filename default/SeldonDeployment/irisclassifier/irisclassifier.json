@@ -72,7 +72,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2022-01-26T17:35:12Z"
+                            "creationTimestamp": "2022-01-26T17:35:48Z"
                         },
                         "spec": {
                             "containers": [
@@ -91,7 +91,7 @@
                 },
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 50
             }
         ],
         "annotations": {
