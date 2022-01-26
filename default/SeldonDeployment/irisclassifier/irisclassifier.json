@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "aa74ca59-a332-47d5-85fe-22184af58c81-default",
             "fluentd": "true"
         }
     },
@@ -14,53 +15,6 @@
         "predictors": [
             {
                 "name": "default",
-                "graph": {
-                    "name": "irisclassifier-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://seldon-models/v1.11.2/sklearn/iris",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2022-01-26T17:34:22Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "irisclassifier-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/irisclassifier-container": "default"
-                },
-                "engineResources": {},
-                "labels": {
-                    "version": "default"
-                },
-                "svcOrchSpec": {},
-                "traffic": 50
-            },
-            {
-                "name": "canary",
                 "graph": {
                     "name": "irisclassifier-container",
                     "implementation": "XGBOOST_SERVER",
@@ -86,12 +40,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/irisclassifier-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/irisclassifier-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 50
+                "traffic": 100
             }
         ],
         "annotations": {
