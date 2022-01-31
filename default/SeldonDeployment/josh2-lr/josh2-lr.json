@@ -28,7 +28,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2022-01-31T15:31:37Z"
+                            "creationTimestamp": "2022-01-31T15:38:49Z"
                         },
                         "spec": {
                             "containers": [
@@ -55,7 +55,7 @@
                 "traffic": 100,
                 "explainer": {
                     "type": "AnchorTabular",
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/josh2/lr",
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/tom-farrand/lr",
                     "containerSpec": {
                         "name": "",
                         "resources": {}
