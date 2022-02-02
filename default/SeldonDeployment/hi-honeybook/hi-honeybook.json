@@ -17,64 +17,6 @@
                 "name": "default",
                 "graph": {
                     "name": "hi-honeybook-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://seldon-models/v1.11.2/sklearn/iris",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2022-02-02T14:57:56Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "hi-honeybook-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/hi-honeybook-container": "default"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 50,
-                "explainer": {
-                    "type": "AnchorTabular",
-                    "modelUri": "gs://seldon-models/alibi/iris_anchor_tabular_explainer_v2",
-                    "containerSpec": {
-                        "name": "",
-                        "resources": {}
-                    },
-                    "config": {
-                        "batch_size": "100",
-                        "delta": "0.1",
-                        "tau": "0.15",
-                        "threshold": "0.95"
-                    }
-                }
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "hi-honeybook-container",
                     "implementation": "XGBOOST_SERVER",
                     "modelUri": "gs://seldon-models/xgboost/iris",
                     "logger": {
@@ -109,12 +51,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/hi-honeybook-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/hi-honeybook-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 50
+                "traffic": 100
             }
         ],
         "annotations": {
