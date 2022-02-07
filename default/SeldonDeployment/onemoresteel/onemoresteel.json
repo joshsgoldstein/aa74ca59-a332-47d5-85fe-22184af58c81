@@ -1,0 +1,55 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "onemoresteel",
+        "namespace": "default",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "onemoresteel",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "onemoresteel-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/workshops/manufactoring",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-02-07T23:28:04Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "onemoresteel-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/onemoresteel-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "tensorflow"
+    },
+    "status": {}
+}
