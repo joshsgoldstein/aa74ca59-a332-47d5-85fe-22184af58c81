@@ -55,7 +55,7 @@
                 "traffic": 100
             },
             {
-                "name": "default",
+                "name": "canary",
                 "graph": {
                     "name": "manu-canary-test-canary-container",
                     "implementation": "TENSORFLOW_SERVER",
