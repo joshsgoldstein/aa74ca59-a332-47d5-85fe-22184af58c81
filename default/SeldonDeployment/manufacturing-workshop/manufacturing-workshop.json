@@ -1,0 +1,106 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "manufacturing-workshop",
+        "namespace": "default",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "manufacturing-workshop",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "manufacturing-workshop-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/workshops/manufactoring",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-02-07T23:18:30Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "manufacturing-workshop-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/steelagain-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 50
+            },
+            {
+                "name": "canary",
+                "graph": {
+                    "name": "manufacturing-workshop-canary-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/workshops/manufactoring/inception",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-02-07T23:18:30Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "manufacturing-workshop-canary-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/steelagain-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 50
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
