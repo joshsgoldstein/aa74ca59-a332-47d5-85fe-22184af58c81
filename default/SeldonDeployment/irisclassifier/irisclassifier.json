@@ -46,7 +46,7 @@
                     "version": "default"
                 },
                 "svcOrchSpec": {},
-                "traffic": 50,
+                "traffic": 45,
                 "explainer": {
                     "type": "AnchorTabular",
                     "modelUri": "gs://seldon-models/alibi/iris_anchor_tabular_explainer_v2",
@@ -60,7 +60,7 @@
                 "name": "canary",
                 "graph": {
                     "name": "irisclassifier-container",
-                    "implementation": "SKLEARN_SERVER",
+                    "implementation": "XGBOOST_SERVER",
                     "modelUri": "gs://seldon-models/xgboost/iris",
                     "logger": {
                         "mode": "all"
@@ -69,24 +69,13 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2022-02-10T13:36:29Z"
+                            "creationTimestamp": "2022-02-14T19:40:41Z"
                         },
                         "spec": {
                             "containers": [
                                 {
                                     "name": "irisclassifier-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
+                                    "resources": {}
                                 }
                             ]
                         }
@@ -99,7 +88,7 @@
                 },
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 50
+                "traffic": 55
             }
         ],
         "annotations": {
