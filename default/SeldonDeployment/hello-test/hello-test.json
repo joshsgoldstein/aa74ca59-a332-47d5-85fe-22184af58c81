@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "aa74ca59-a332-47d5-85fe-22184af58c81-default",
             "fluentd": "true"
         }
     },
@@ -43,7 +44,15 @@
                 },
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 50
+                "traffic": 50,
+                "explainer": {
+                    "type": "AnchorTabular",
+                    "modelUri": "gs://seldon-models/alibi/iris_anchor_tabular_explainer_v2",
+                    "containerSpec": {
+                        "name": "",
+                        "resources": {}
+                    }
+                }
             },
             {
                 "name": "canary",
